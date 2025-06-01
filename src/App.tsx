@@ -129,7 +129,7 @@ function App() {
         <Link
           icon={FaLinkedin}
           name='LinkedIn'
-          href='https://github.com/HasSak-47'
+          href='https://www.linkedin.com/in/ulises-alanis-255bytes/'
         />
       </footer>
     </div>
