@@ -1,10 +1,12 @@
 @import 'tailwindcss';
 @import './theme.css';
+
 @layer base {
-  * {
+  body,
+  html {
     @apply bg-lotusWhite3 text-lotusInk1;
     @media (prefers-color-scheme: dark) {
-      @apply bg-sumiInk0 text-oldWhite;
+      @apply bg-sumiInk0 text-lotusWhite3;
     }
   }
 }

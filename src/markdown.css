@@ -3,7 +3,7 @@
 
 @layer components {
   .markdown {
-    @apply text-fujiWhite m-auto max-w-prose space-y-6 overflow-hidden text-justify text-base leading-relaxed break-words;
+    @apply bg-dragonBlack1 text-lotusWhite3 space-y-6 overflow-hidden text-justify text-base leading-relaxed break-words;
   }
 
   .markdown h1 {
@@ -36,7 +36,7 @@
   }
 
   .markdown code {
-    @apply bg-sumiInk1 text-waveAqua2 rounded px-1 py-0.5 font-mono text-sm;
+    @apply text-waveAqua2 bg-dragonBlack0 rounded px-1 py-0.5 font-mono text-sm;
   }
 
   .markdown pre {
