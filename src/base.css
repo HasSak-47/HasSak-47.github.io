@@ -2,7 +2,7 @@
 @import './theme.css';
 @layer base {
   * {
-    @apply bg-lotusWhite3;
+    @apply bg-lotusWhite3 text-lotusInk1;
     @media (prefers-color-scheme: dark) {
       @apply bg-sumiInk0 text-oldWhite;
     }
