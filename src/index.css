@@ -1,5 +1,210 @@
 @import 'tailwindcss';
 
 @theme {
-	--color-mint-500: oklch(0.72 0.11 178);
+  --font-mono: 'Fira Code', monospace;
+
+  --color-*: initial;
+
+  /* Bg Shades */
+  --color-sumiInk0: #16161d;
+  --color-sumiInk1: #181820;
+  --color-sumiInk2: #1a1a22;
+  --color-sumiInk3: #1f1f28;
+  --color-sumiInk4: #2a2a37;
+  --color-sumiInk5: #363646;
+  /*fg */
+  --color-sumiInk6: #54546d;
+
+  /* Popup and Floats */
+  --color-waveBlue1: #223249;
+  --color-waveBlue2: #2d4f67;
+
+  /* Diff and Git */
+  --color-winterGreen: #2b3328;
+  --color-winterYellow: #49443c;
+  --color-winterRed: #43242b;
+  --color-winterBlue: #252535;
+  --color-autumnGreen: #76946a;
+  --color-autumnRed: #c34043;
+  --color-autumnYellow: #dca561;
+
+  /* Diag */
+  --color-samuraiRed: #e82424;
+  --color-roninYellow: #ff9e3b;
+  --color-waveAqua1: #6a9589;
+  --color-dragonBlue: #658594;
+
+  /* Fg and Comments */
+  --color-oldWhite: #c8c093;
+  --color-fujiWhite: #dcd7ba;
+  --color-fujiGray: #727169;
+
+  --color-oniViolet: #957fb8;
+  --color-oniViolet2: #b8b4d0;
+  --color-crystalBlue: #7e9cd8;
+  --color-springViolet1: #938aa9;
+  --color-springViolet2: #9cabca;
+  --color-springBlue: #7fb4ca;
+  --color-lightBlue: #a3d4d5;
+  /* unused yet */
+  --color-waveAqua2: #7aa89f;
+  /* improve lightness: desaturated greenish Aqua */
+
+  /* waveAqua2  = #68AD99, */
+  /* waveAqua4  = #7AA880, */
+  /* waveAqua5  = #6CAF95, */
+  /* waveAqua3  = #68AD99, */
+
+  --color-springGreen: #98bb6c;
+  --color-boatYellow1: #938056;
+  --color-boatYellow2: #c0a36e;
+  --color-carpYellow: #e6c384;
+
+  --color-sakuraPink: #d27e99;
+  --color-waveRed: #e46876;
+  --color-peachRed: #ff5d62;
+  --color-surimiOrange: #ffa066;
+  --color-katanaGray: #717c7c;
+
+  --color-dragonBlack0: #0d0c0c;
+  --color-dragonBlack1: #12120f;
+  --color-dragonBlack2: #1d1c19;
+  --color-dragonBlack3: #181616;
+  --color-dragonBlack4: #282727;
+  --color-dragonBlack5: #393836;
+  --color-dragonBlack6: #625e5a;
+
+  --color-dragonWhite: #c5c9c5;
+  --color-dragonGreen: #87a987;
+  --color-dragonGreen2: #8a9a7b;
+  --color-dragonPink: #a292a3;
+  --color-dragonOrange: #b6927b;
+  --color-dragonOrange2: #b98d7b;
+  --color-dragonGray: #a6a69c;
+  --color-dragonGray2: #9e9b93;
+  --color-dragonGray3: #7a8382;
+  --color-dragonBlue2: #8ba4b0;
+  --color-dragonViolet: #8992a7;
+  --color-dragonRed: #c4746e;
+  --color-dragonAqua: #8ea4a2;
+  --color-dragonAsh: #737c73;
+  --color-dragonTeal: #949fb5;
+  --color-dragonYellow: #c4b28a; /*#a99c8b, #8a9aa3, */
+
+  --color-lotusInk1: #545464;
+  --color-lotusInk2: #43436c;
+  --color-lotusGray: #dcd7ba;
+  --color-lotusGray2: #716e61;
+  --color-lotusGray3: #8a8980;
+  --color-lotusWhite0: #d5cea3;
+  --color-lotusWhite1: #dcd5ac;
+  --color-lotusWhite2: #e5ddb0;
+  --color-lotusWhite3: #f2ecbc;
+  --color-lotusWhite4: #e7dba0;
+  --color-lotusWhite5: #e4d794;
+  --color-lotusViolet1: #a09cac;
+  --color-lotusViolet2: #766b90;
+  --color-lotusViolet3: #c9cbd1;
+  --color-lotusViolet4: #624c83;
+  --color-lotusBlue1: #c7d7e0;
+  --color-lotusBlue2: #b5cbd2;
+  --color-lotusBlue3: #9fb5c9;
+  --color-lotusBlue4: #4d699b;
+  --color-lotusBlue5: #5d57a3;
+  --color-lotusGreen: #6f894e;
+  --color-lotusGreen2: #6e915f;
+  --color-lotusGreen3: #b7d0ae;
+  --color-lotusPink: #b35b79;
+  --color-lotusOrange: #cc6d00;
+  --color-lotusOrange2: #e98a00;
+  --color-lotusYellow: #77713f;
+  --color-lotusYellow2: #836f4a;
+  --color-lotusYellow3: #de9800;
+  --color-lotusYellow4: #f9d791;
+  --color-lotusRed: #c84053;
+  --color-lotusRed2: #d7474b;
+  --color-lotusRed3: #e82424;
+  --color-lotusRed4: #d9a594;
+  --color-lotusAqua: #597b75;
+  --color-lotusAqua2: #5e857a;
+  --color-lotusTeal1: #4e8ca2;
+  --color-lotusTeal2: #6693bf;
+  --color-lotusTeal3: #5a7785;
+  --color-lotusCyan: #d7e3d8;
+}
+
+@layer base {
+  * {
+    @apply bg-lotusWhite3;
+    @media (prefers-color-scheme: dark) {
+      @apply bg-sumiInk0 text-oldWhite;
+    }
+  }
+}
+
+@layer components {
+  .markdown {
+    @apply text-fujiWhite m-auto max-w-prose space-y-6 overflow-hidden text-justify text-base leading-relaxed break-words;
+  }
+
+  .markdown h1 {
+    @apply text-oldWhite mt-8 mb-4 text-4xl font-bold;
+  }
+
+  .markdown h2 {
+    @apply text-oldWhite mt-6 mb-3 text-3xl font-semibold;
+  }
+
+  .markdown h3 {
+    @apply text-oldWhite mt-5 mb-2 text-2xl font-semibold;
+  }
+
+  .markdown p {
+    @apply text-fujiWhite mt-4 text-base;
+  }
+
+  .markdown ul,
+  .markdown ol {
+    @apply mt-4 list-inside list-disc space-y-2 pl-4;
+  }
+
+  .markdown li {
+    @apply text-fujiWhite;
+  }
+
+  .markdown blockquote {
+    @apply border-waveBlue1 text-fujiWhite bg-sumiInk2 rounded-md border-l-4 px-4 py-3 pl-4 italic;
+  }
+
+  .markdown code {
+    @apply bg-sumiInk1 text-waveAqua2 rounded px-1 py-0.5 font-mono text-sm;
+  }
+
+  .markdown pre {
+    @apply bg-sumiInk2 mt-4 overflow-x-auto rounded-md p-4 text-sm;
+  }
+
+  .markdown pre code {
+    @apply text-waveAqua2 font-mono;
+  }
+
+  .markdown a {
+    @apply text-fujiGray hover:text-waveAqua2 underline underline-offset-2 transition-colors;
+  }
+
+  .markdown img {
+    @apply mx-auto my-6 max-w-full rounded-xl shadow-lg;
+  }
+
+  .markdown table {
+    @apply my-6 w-full border-collapse;
+  }
+
+  .markdown th {
+    @apply text-oldWhite border-sumiInk4 border-b px-4 py-2 text-left font-semibold;
+  }
+
+  .markdown td {
+    @apply text-fujiWhite border-sumiInk4 border-b px-4 py-2;
+  }
 }
