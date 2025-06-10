@@ -105,6 +105,39 @@ function Project({ name, repo }: ProjectProps) {
 }
 
 function App() {
+  let projects = [
+    { name: 'Luall', repo: 'HasSak-47/cshell' },
+    { name: 'LyTop', repo: 'HasSak-47/monitor' },
+    { name: 'One, offs', repo: 'HasSak-47/oneoffs' },
+    { name: 'Project, Manager', repo: 'HasSak-47/project_manager' },
+  ];
+
+  const [index, setIndex] = useState<number | null>(null);
+  useEffect(() => {
+    const handler = (delta: number) => {
+      return (prev: number | null) => {
+        if (prev === null) return 0;
+        let next = prev + delta;
+        if (next < 0) next = 0;
+        if (next >= projects.length) next = projects.length - 1;
+
+        return next;
+      };
+    };
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'j') {
+        setIndex(handler(1));
+      } else if (e.key === 'k') {
+        setIndex(handler(-1));
+      } else if (e.key === 'j') {
+        setIndex(null);
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [index]);
+
   return (
     <div className='bg-sumiInk1 text-fujiWhite flex min-h-screen w-screen min-w-[200px] flex-col justify-between'>
       <header className='bg-sumiInk3 px-6 py-8 text-3xl font-bold tracking-wider shadow-md'>
@@ -114,23 +147,31 @@ function App() {
       <main className='flex flex-col items-center justify-center gap-6 px-4 py-10'>
         <div className='flex w-full flex-col items-center justify-center gap-6 px-4 py-10'>
           <h1 className='text-crystalBlue text-3xl'>Personal Projects</h1>
-          <Project name='Luall' repo='HasSak-47/cshell' />
-          <Project name='LyTop' repo='HasSak-47/monitor' />
-          <Project name='Project Manager' repo='HasSak-47/project_manager' />
         </div>
+        {projects.flatMap((p) => (
+          <Project name={p.name} repo={p.repo} />
+        ))}
       </main>
 
-      <footer className='bg-dragonBlack1 text-lotusWhite3 border-sumiInk4 flex justify-center gap-4 border-t py-6'>
-        <Link
-          icon={FaGithub}
-          name='GitHub'
-          href='https://github.com/HasSak-47'
-        />
-        <Link
-          icon={FaLinkedin}
-          name='LinkedIn'
-          href='https://www.linkedin.com/in/ulises-alanis-255bytes/'
-        />
+      <footer className='bg-dragonBlack1 text-lotusWhite3 border-sumiInk4 border-t px-4 py-6'>
+        <div className='mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row'>
+          <p className='text-fujiGray text-center text-sm sm:text-left'>
+            Use keyboard or Vim motions (arrows) to navigate. Press Enter to
+            select.
+          </p>
+          <div className='flex gap-4'>
+            <Link
+              icon={FaGithub}
+              name='GitHub'
+              href='https://github.com/HasSak-47'
+            />
+            <Link
+              icon={FaLinkedin}
+              name='LinkedIn'
+              href='https://www.linkedin.com/in/ulises-alanis-255bytes/'
+            />
+          </div>
+        </div>
       </footer>
     </div>
   );
