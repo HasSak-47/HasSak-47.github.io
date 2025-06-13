@@ -25,11 +25,6 @@ function Link({ icon: Icon, name, href }: LinkProps) {
   );
 }
 
-interface ProjectProps {
-  name: string;
-  repo: string;
-}
-
 function getRawReadmeUrl(repo: string, branch = 'main'): string | null {
   const [user, project] = repo.split('/');
 
@@ -44,7 +39,12 @@ function getGithubRepoUrl(repo: string): string | null {
   return `https://github.com/${user}/${project}`;
 }
 
-function Project({ name, repo }: ProjectProps) {
+interface ProjectProps {
+  name: string;
+  repo: string;
+}
+
+function Project({ name, repo}: ProjectProps) {
   const [readme, setReadme] = useState<string | null>(null);
   const [showReadme, setShowReadme] = useState(false);
 
@@ -68,12 +68,12 @@ function Project({ name, repo }: ProjectProps) {
 
   const githubUrl = getGithubRepoUrl(repo);
 
-  return (
+	return (
     <div className='border-sumiInk4 bg-sumiInk2 w-full max-w-3xl rounded-xl border p-6 shadow-md'>
       <div className='mb-3 flex items-center justify-between'>
         <div className='text-crystalBlue text-2xl font-semibold'>{name}</div>
         {readme && (
-          <button
+					<button
             onClick={() => setShowReadme(!showReadme)}
             className='bg-sumiInk4 text-springViolet1 hover:bg-sumiInk5 rounded-lg px-2 py-1 transition'
             title={showReadme ? 'Hide README' : 'Show README'}
@@ -139,7 +139,7 @@ function App() {
   }, [index]);
 
   return (
-    <div className='bg-sumiInk1 text-fujiWhite flex min-h-screen w-screen min-w-[200px] flex-col justify-between'>
+    <div className='bg-sumiInk1 text-fujiWhite flex w-screen min-w-[200px] flex-col justify-between'>
       <header className='bg-sumiInk3 px-6 py-8 text-3xl font-bold tracking-wider shadow-md'>
         <h1 className='text-crystalBlue'>Portafolio</h1>
       </header>
@@ -155,10 +155,6 @@ function App() {
 
       <footer className='bg-dragonBlack1 text-lotusWhite3 border-sumiInk4 border-t px-4 py-6'>
         <div className='mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row'>
-          <p className='text-fujiGray text-center text-sm sm:text-left'>
-            Use keyboard or Vim motions (arrows) to navigate. Press Enter to
-            select.
-          </p>
           <div className='flex gap-4'>
             <Link
               icon={FaGithub}
