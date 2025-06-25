@@ -44,7 +44,7 @@ interface ProjectProps {
   repo: string;
 }
 
-function Project({ name, repo}: ProjectProps) {
+function Project({ name, repo }: ProjectProps) {
   const [readme, setReadme] = useState<string | null>(null);
   const [showReadme, setShowReadme] = useState(false);
 
@@ -68,12 +68,12 @@ function Project({ name, repo}: ProjectProps) {
 
   const githubUrl = getGithubRepoUrl(repo);
 
-	return (
+  return (
     <div className='border-sumiInk4 bg-sumiInk2 w-full max-w-3xl rounded-xl border p-6 shadow-md'>
       <div className='mb-3 flex items-center justify-between'>
         <div className='text-crystalBlue text-2xl font-semibold'>{name}</div>
         {readme && (
-					<button
+          <button
             onClick={() => setShowReadme(!showReadme)}
             className='bg-sumiInk4 text-springViolet1 hover:bg-sumiInk5 rounded-lg px-2 py-1 transition'
             title={showReadme ? 'Hide README' : 'Show README'}
@@ -108,8 +108,8 @@ function App() {
   let projects = [
     { name: 'Luall', repo: 'HasSak-47/cshell' },
     { name: 'LyTop', repo: 'HasSak-47/monitor' },
-    { name: 'One, offs', repo: 'HasSak-47/oneoffs' },
-    { name: 'Project, Manager', repo: 'HasSak-47/project_manager' },
+    { name: 'One offs', repo: 'HasSak-47/oneoffs' },
+    { name: 'Project Manager', repo: 'HasSak-47/project_manager' },
   ];
 
   const [index, setIndex] = useState<number | null>(null);

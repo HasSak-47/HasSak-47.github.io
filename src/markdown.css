@@ -44,7 +44,7 @@
   }
 
   .markdown pre code {
-    @apply text-waveAqua2 font-mono;
+    @apply bg-sumiInk2 text-waveAqua2 font-mono;
   }
 
   .markdown a {
