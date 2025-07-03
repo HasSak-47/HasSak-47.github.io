@@ -26,32 +26,29 @@ function Link({ icon: Icon, name, href }: LinkProps) {
 	);
 }
 
-function App() {
-	const [projects, setProjects] = useState<JSX.Element[]>(
-		[]
-	);
+export default function App() {
+	const [projectList, setProjectList] = useState<
+		ProjectProps[]
+	>([]);
+	const [index, setIndex] = useState<number | null>(null);
+
 	useEffect(() => {
 		async function fetchProjects() {
-			const res = await fetch('./static/data.json');
+			const res = await fetch('./data.json');
 			const data = await res.json();
-			let elements = (
-				data['projects'] as ProjectProps[]
-			).flatMap((e) => <Project {...e} />);
-			setProjects(elements);
+			setProjectList(data['projects']);
 		}
 		fetchProjects();
-	}, [projects]);
+	}, []);
 
-	const [index, setIndex] = useState<number | null>(null);
 	useEffect(() => {
 		const handler = (delta: number) => {
 			return (prev: number | null) => {
 				if (prev === null) return 0;
 				let next = prev + delta;
 				if (next < 0) next = 0;
-				if (next >= projects.length)
-					next = projects.length - 1;
-
+				if (next >= projectList.length)
+					next = projectList.length - 1;
 				return next;
 			};
 		};
@@ -60,15 +57,25 @@ function App() {
 				setIndex(handler(1));
 			} else if (e.key === 'k') {
 				setIndex(handler(-1));
-			} else if (e.key === 'j') {
-				setIndex(null);
 			}
 		}
-
 		window.addEventListener('keydown', handleKeyDown);
 		return () =>
 			window.removeEventListener('keydown', handleKeyDown);
-	}, [index]);
+	}, [projectList.length]);
+
+	const main = (
+		<main className='flex flex-1 flex-col items-center justify-center gap-6 px-4 py-10'>
+			<div className='flex w-full flex-col items-center justify-center gap-6 px-4 py-10'>
+				<h1 className='text-crystalBlue text-3xl'>
+					Personal Projects
+				</h1>
+			</div>
+			{projectList.map((props, i) => (
+				<Project key={i} {...props} focus={i === index} />
+			))}
+		</main>
+	);
 
 	return (
 		<div className='bg-sumiInk1 text-fujiWhite flex min-h-screen w-screen min-w-[200px] flex-col justify-between'>
@@ -76,14 +83,7 @@ function App() {
 				<h1 className='text-crystalBlue'>Portafolio</h1>
 			</header>
 
-			<main className='flex flex-1 flex-col items-center justify-center gap-6 px-4 py-10'>
-				<div className='flex w-full flex-col items-center justify-center gap-6 px-4 py-10'>
-					<h1 className='text-crystalBlue text-3xl'>
-						Personal Projects
-					</h1>
-				</div>
-				{projects}
-			</main>
+			{main}
 
 			<footer className='bg-dragonBlack1 text-lotusWhite3 border-sumiInk4 border-t px-4 py-6'>
 				<div className='mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row'>
@@ -104,5 +104,3 @@ function App() {
 		</div>
 	);
 }
-
-export default App;

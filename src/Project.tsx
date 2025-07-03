@@ -1,6 +1,6 @@
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import ReactMarkdown from 'react-markdown';
 
@@ -24,6 +24,7 @@ export interface ProjectProps {
 	owner: string;
 	project: string;
 	branch?: string;
+	focus?: boolean;
 }
 
 export default function Project({
@@ -31,10 +32,13 @@ export default function Project({
 	owner,
 	project,
 	branch,
+	focus,
 }: ProjectProps) {
 	const [readme, setReadme] = useState<string | null>(null);
 	const [showReadme, setShowReadme] = useState(false);
+	const containerRef = useRef<HTMLDivElement>(null);
 
+	// Fetch README on mount
 	useEffect(() => {
 		async function fetchReadme() {
 			const rawUrl = getRawReadmeUrl(
@@ -55,12 +59,25 @@ export default function Project({
 		}
 
 		fetchReadme();
-	}, []);
+	}, [owner, project, branch]);
+
+	// Focus div when `focus` is true
+	useEffect(() => {
+		if (focus && containerRef.current) {
+			containerRef.current.focus();
+		} else if (containerRef.current) {
+			containerRef.current.blur();
+		}
+	}, [focus]);
 
 	const githubUrl = getGithubRepoUrl(owner, project);
 
 	return (
-		<div className='border-sumiInk4 bg-sumiInk2 w-full max-w-3xl rounded-xl border p-6 shadow-md'>
+		<div
+			ref={containerRef}
+			className='border-sumiInk4 bg-sumiInk2 focus:border-sumiInk3 w-full max-w-3xl rounded-xl border p-6 shadow-md'
+			tabIndex={-1}
+		>
 			<div className='mb-3 flex items-center justify-between'>
 				<div className='text-crystalBlue text-2xl font-semibold'>
 					{name}
@@ -93,7 +110,6 @@ export default function Project({
 				</a>
 			)}
 
-			{/* markdown class makes the custom style in ./markdown apply to childs */}
 			{showReadme && readme && (
 				<div className='markdown prose prose-invert border-dragonBlue2 mt-4 max-w-none rounded-lg border p-6'>
 					<ReactMarkdown>{readme}</ReactMarkdown>
