@@ -4,18 +4,23 @@
       "name": "Luall",
       "owner": "HasSak-47",
       "project": "cshell",
+      "desc": "Minimalist interactive shell for Linux, written in C with embedded Lua scripting. Designed for runtime configurability, Luall enables users to redefine core shell behaviors, including prompts, parsing, and command execution, through Lua scripts.",
+      "tools": ["Make", "C", "Lua 5.4"],
       "branch": "stable"
     },
     {
       "name": "LyTop",
       "owner": "HasSak-47",
       "project": "monitor",
+      "desc": "Extensible system monitor built for Linux terminals. Designed for high customizability via Lua scripting, LyTop combines a C++ core with a fully scriptable Lua-based widget/UI system. ",
+      "tools": ["Make", "C++", "Lua 5.4", "lui"],
       "branch": "stable"
     },
     {
       "name": "One offs",
       "owner": "HasSak-47",
-      "project": "oneoffs"
+      "project": "oneoffs",
+      "page": "https://HasSak-47.github.io/oneoffs"
     },
     {
       "name": "Project Manager",
@@ -25,9 +30,26 @@
     {
       "name": "Home Page",
       "owner": "HasSak-47",
+      "desc": "this page :)",
       "project": "HasSak-47.github.io"
     }
   ],
+  "custom_tools": [
+    {
+      "name": "lui",
+      "owner": "HasSak-47",
+      "project": "lui",
+      "branch": "stable"
+    },
+
+    {
+      "name": "LyRust",
+      "owner": "HasSak-47",
+      "project": "ly-rustlib",
+      "branch": "stable"
+    }
+  ],
+  "dotfiles": [],
   "blogs": [],
   "wikis": []
 }
