@@ -42,7 +42,10 @@ export interface ProjectProps {
   focus?: boolean;
   tools?: string[];
   desc?: string[];
+  short_desc?: string;
+  shortest_desc?: string;
   page?: string;
+  mode: 'shortest_desc' | 'short_desc' | 'desc';
 }
 
 export default function Project({
@@ -51,9 +54,9 @@ export default function Project({
   project,
   branch,
   focus,
-  tools,
   page,
-  desc,
+  mode = 'short_desc',
+  ...opts
 }: ProjectProps) {
   const [readme, setReadme] = useState<string | null>(null);
   const [showReadme, setShowReadme] = useState(false);
@@ -93,6 +96,15 @@ export default function Project({
 
   const githubUrl = getGithubRepoUrl(owner, project);
 
+  let desc =
+    opts[mode] !== undefined
+      ? opts[mode]
+      : opts['shortest_desc'] !== undefined
+        ? opts['shortest_desc']
+        : opts['short_desc'] !== undefined
+          ? opts['short_desc']
+          : opts['short_desc'];
+
   return (
     <div
       ref={containerRef}
@@ -104,19 +116,21 @@ export default function Project({
           {name}
         </div>
         {readme && (
-          <button
-            onClick={() => setShowReadme(!showReadme)}
-            className='bg-sumiInk4 text-springViolet1 hover:bg-sumiInk5 rounded-lg px-2 py-1 transition'
-            title={
-              showReadme ? 'Hide README' : 'Show README'
-            }
-          >
-            {showReadme ? (
-              <HiChevronUp />
-            ) : (
-              <HiChevronDown />
-            )}
-          </button>
+          <div className='text-springViolet1 hover:text-dragonBlue2 flex rounded-lg px-2 py-1 transition'>
+            <div>readme.md</div>
+            <button
+              onClick={() => setShowReadme(!showReadme)}
+              title={
+                showReadme ? 'Hide README' : 'Show README'
+              }
+            >
+              {showReadme ? (
+                <HiChevronUp />
+              ) : (
+                <HiChevronDown />
+              )}
+            </button>
+          </div>
         )}
       </div>
       <div className='text-justify'> {desc} </div>

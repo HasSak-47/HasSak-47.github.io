@@ -1,33 +1,68 @@
 {
-  "projects": [
-    {
-      "name": "Luall",
-      "owner": "HasSak-47",
-      "project": "cshell",
-      "branch": "stable"
-    },
-    {
-      "name": "LyTop",
-      "owner": "HasSak-47",
-      "project": "monitor",
-      "branch": "stable"
-    },
-    {
-      "name": "One offs",
-      "owner": "HasSak-47",
-      "project": "oneoffs"
-    },
-    {
-      "name": "Project Manager",
-      "owner": "HasSak-47",
-      "project": "project_manager"
-    },
-    {
-      "name": "Home Page",
-      "owner": "HasSak-47",
-      "project": "HasSak-47.github.io"
-    }
-  ],
-  "blogs": [],
-  "wikis": []
+    "projects": [
+        {
+            "name": "Niebo",
+            "status": "wip",
+            "owner": "HasSak-47",
+            "project": "lyra",
+            "desc": "Minimalist interactive shell for Linux, written in C and Rust with embedded Lua scripting. Designed for runtime configurability, lyra enables users to redefine core shell behaviors, including prompts, parsing, and command execution, through Lua scripts.",
+            "tools": [
+                "Make",
+                "C",
+                "Lua 5.4"
+            ],
+            "branch": "stable"
+        },
+        {
+            "name": "Lyra Shell",
+            "status": "experimental",
+            "owner": "HasSak-47",
+            "project": "lyra",
+            "desc": "Minimalist interactive shell for Linux, written in C and Rust with embedded Lua scripting. Designed for runtime configurability, lyra enables users to redefine core shell behaviors, including prompts, parsing, and command execution, through Lua scripts.",
+            "tools": [
+                "Make",
+                "C",
+                "Lua 5.4"
+            ],
+            "branch": "stable"
+        },
+        {
+            "name": "LyTop",
+            "status": "experimental",
+            "owner": "HasSak-47",
+            "project": "monitor",
+            "desc": "Extensible system monitor built for Linux terminals. Designed for high customizability via Lua scripting, LyTop combines a C++ core with a fully scriptable Lua-based widget/UI system. ",
+            "tools": [
+                "Make",
+                "C++",
+                "Lua 5.4",
+                "lui"
+            ],
+            "branch": "stable"
+        },
+        {
+            "name": "Yet Another Interface Design Language",
+            "status": "experimental",
+            "owner": "HasSak-47",
+            "project": "yaidl"
+        },
+        {
+            "name": "Project Manager",
+            "status": "wip",
+            "owner": "HasSak-47",
+            "project": "project_manager"
+        },
+        {
+            "name": "Home Page",
+            "status": "stable",
+            "owner": "HasSak-47",
+            "desc": "this page :)",
+            "project": "HasSak-47.github.io"
+        }
+    ],
+    "dotfiles": [
+        "LyVim"
+    ],
+    "blogs": [],
+    "wikis": []
 }

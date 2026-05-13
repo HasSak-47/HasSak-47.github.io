@@ -13,7 +13,7 @@ function Link({ icon: Icon, name, href }: LinkProps) {
   return (
     <a
       href={href}
-      className='border-dragonBlack4 text-lightBlue hover:text-crystalBlue hover:border-dragonBlue flex items-center gap-2 rounded-lg border px-4 py-2 transition'
+      className='border-dragonBlack4 text-lightBlue hover:text-crystalBlue hover:border-dragonBlue flex items-center gap-2 px-4 py-2 transition'
       target='_blank'
       rel='noopener noreferrer'
     >
@@ -73,9 +73,9 @@ export default function App() {
   );
 
   return (
-    <div className='bg-sumiInk1 text-fujiWhite flex min-h-screen w-screen min-w-[200px] flex-col justify-between'>
+    <div className='bg-sumiInk1 text-fujiWhite flex min-h-screen w-screen min-w-50 flex-col justify-between'>
       <header className='bg-sumiInk3 px-6 py-8 text-3xl font-bold tracking-wider shadow-md'>
-        <h1 className='text-crystalBlue'>Ulises Alanis</h1>
+        <h1 className='text-crystalBlue'>Daniel Alanis</h1>
       </header>
 
       {main}
