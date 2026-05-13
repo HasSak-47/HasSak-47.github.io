@@ -202,10 +202,10 @@ export default function App() {
               key={project.name}
               className='border-sumiInk4 bg-sumiInk1 p-3 sm:p-4'
             >
-              <p className='text-crystalBlue text-xs tracking-[0.28em] uppercase'>
+              <p className='text-crystalBlue text-ls tracking-[0.28em] uppercase'>
                 {`0${i + 1} / ${project.name}`}
               </p>
-              <p className='text-lotusWhite3 mt-3 text-lg leading-8'>
+              <p className='text-dragonBlue2 text-s mt-3 leading-8'>
                 {getProjectDescription(project) ||
                   'No project description available yet.'}
               </p>
