@@ -36,6 +36,7 @@ function generateUrl(page: string | null, text: string) {
 
 export interface ProjectProps {
   name: string;
+  status?: string;
   owner: string;
   project: string;
   branch?: string;
@@ -95,6 +96,7 @@ export default function Project({
   }, [focus]);
 
   const githubUrl = getGithubRepoUrl(owner, project);
+  const status = opts['status' as keyof typeof opts];
 
   let desc =
     opts[mode] !== undefined
@@ -108,39 +110,75 @@ export default function Project({
   return (
     <div
       ref={containerRef}
-      className='border-sumiInk4 bg-sumiInk2 focus:border-sumiInk3 w-full max-w-3xl rounded-xl border p-6 shadow-md'
+      className='focus:border-crystalBlue w-full p-6 transition'
       tabIndex={-1}
     >
-      <div className='mb-3 flex items-center justify-between'>
-        <div className='text-crystalBlue text-2xl font-semibold'>
-          {name}
+      <div className='mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between'>
+        <div>
+          <div className='flex flex-wrap items-center gap-3'>
+            <div className='text-crystalBlue text-2xl font-semibold uppercase'>
+              {name}
+            </div>
+            {typeof status === 'string' && (
+              <span className='border-waveBlue2 text-lightBlue border px-2 py-1 text-xs uppercase'>
+                {status}
+              </span>
+            )}
+          </div>
+          <div className='text-fujiGray mt-2 text-xs tracking-[0.24em] uppercase'>
+            {owner}/{project}
+          </div>
+          {opts.tools && opts.tools.length > 0 && (
+            <div className='mt-4 flex flex-wrap gap-2'>
+              {opts.tools.map((tool) => (
+                <span
+                  key={tool}
+                  className='border-sumiInk4 text-dragonBlue2 border px-2 py-1 text-xs uppercase'
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
         {readme && (
-          <div className='text-springViolet1 hover:text-dragonBlue2 flex rounded-lg px-2 py-1 transition'>
-            <div>readme.md</div>
-            <button
-              onClick={() => setShowReadme(!showReadme)}
-              title={
-                showReadme ? 'Hide README' : 'Show README'
-              }
-            >
-              {showReadme ? (
-                <HiChevronUp />
-              ) : (
-                <HiChevronDown />
-              )}
-            </button>
-          </div>
+          <button
+            className='text-springViolet1 hover:text-dragonBlue2 flex rounded-lg px-2 py-1 transition'
+            onClick={() => setShowReadme(!showReadme)}
+            title={
+              showReadme ? 'Hide README' : 'Show README'
+            }
+          >
+            {showReadme ? (
+              <>
+                <div>Hide readme.md</div>
+                <div className='mt-auto mb-auto'>
+                  <HiChevronUp />
+                </div>
+              </>
+            ) : (
+              <>
+                <div>Show readme.md</div>
+                <div className='mt-auto mb-auto'>
+                  <HiChevronDown />
+                </div>
+              </>
+            )}
+          </button>
         )}
       </div>
-      <div className='text-justify'> {desc} </div>
+      <div className='text-lotusWhite3/90 text-justify leading-7'>
+        {desc}
+      </div>
       {showReadme && readme && (
         <div className='markdown prose prose-invert border-dragonBlue2 mt-4 max-w-none rounded-lg border p-6'>
           <ReactMarkdown>{readme}</ReactMarkdown>
         </div>
       )}
-      {generateUrl(githubUrl, 'View on Github')}
-      {generateUrl(page || null, 'View Page')}
+      <div className='mt-5 flex flex-col gap-1'>
+        {generateUrl(githubUrl, 'View on Github')}
+        {generateUrl(page || null, 'View Page')}
+      </div>
     </div>
   );
 }

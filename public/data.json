@@ -9,6 +9,7 @@
             "short_desc": "Lyra is a hyper-customizable plugin-driven linux shell, it's behavior is modular instead of hardcoded.",
             "desc": "Minimalist interactive shell for Linux, written in C and Rust with embedded Lua scripting. Designed for runtime configurability, lyra enables users to redefine core shell behaviors, including prompts, parsing, and command execution, through Lua scripts.",
             "tools": [
+                "rust",
                 "Make",
                 "C",
                 "Lua 5.4"
@@ -42,11 +43,27 @@
             "branch": "stable"
         },
         {
-            "name": "Yet Another Interface Design Language",
+            "name": "Yet Another/Interface Design Language",
             "status": "experimental",
-            "desc": "YAIDL is a Rust workspace that compiles a compact HTTP DSL describing structs, unions, and endpoints into ready-to-wire code",
+            "short_desc": "YAIDL compiles a compact HTTP DSL describing structs, unions, and endpoints into code",
             "owner": "HasSak-47",
-            "project": "yaidl"
+            "project": "yaidl",
+            "tools": [
+                "Rust",
+                "Pest"
+            ]
+        },
+        {
+            "name": "LUI",
+            "status": "experimental",
+            "short_desc": "A Terminal UI Rendering System. the engine is implemented in C++ with Lua scripting support. It is centered around a Buffer and Widget abstraction for colored character grids, C++ and Lua-defined widgets.",
+            "owner": "HasSak-47",
+            "project": "yaidl",
+            "tools": [
+                "Make",
+                "C++",
+                "Lua 5.4"
+            ]
         },
         {
             "name": "Home Page",
