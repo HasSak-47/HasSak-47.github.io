@@ -2,24 +2,16 @@
 
 @theme {
   --font-mono: 'Fira Code', monospace;
-
   --color-*: initial;
-
-  /* Bg Shades */
   --color-sumiInk0: #16161d;
   --color-sumiInk1: #181820;
   --color-sumiInk2: #1a1a22;
   --color-sumiInk3: #1f1f28;
   --color-sumiInk4: #2a2a37;
   --color-sumiInk5: #363646;
-  /*fg */
   --color-sumiInk6: #54546d;
-
-  /* Popup and Floats */
   --color-waveBlue1: #223249;
   --color-waveBlue2: #2d4f67;
-
-  /* Diff and Git */
   --color-winterGreen: #2b3328;
   --color-winterYellow: #49443c;
   --color-winterRed: #43242b;
@@ -27,18 +19,13 @@
   --color-autumnGreen: #76946a;
   --color-autumnRed: #c34043;
   --color-autumnYellow: #dca561;
-
-  /* Diag */
   --color-samuraiRed: #e82424;
   --color-roninYellow: #ff9e3b;
   --color-waveAqua1: #6a9589;
   --color-dragonBlue: #658594;
-
-  /* Fg and Comments */
   --color-oldWhite: #c8c093;
   --color-fujiWhite: #dcd7ba;
   --color-fujiGray: #727169;
-
   --color-oniViolet: #957fb8;
   --color-oniViolet2: #b8b4d0;
   --color-crystalBlue: #7e9cd8;
@@ -46,26 +33,16 @@
   --color-springViolet2: #9cabca;
   --color-springBlue: #7fb4ca;
   --color-lightBlue: #a3d4d5;
-  /* unused yet */
   --color-waveAqua2: #7aa89f;
-  /* improve lightness: desaturated greenish Aqua */
-
-  /* waveAqua2  = #68AD99, */
-  /* waveAqua4  = #7AA880, */
-  /* waveAqua5  = #6CAF95, */
-  /* waveAqua3  = #68AD99, */
-
   --color-springGreen: #98bb6c;
   --color-boatYellow1: #938056;
   --color-boatYellow2: #c0a36e;
   --color-carpYellow: #e6c384;
-
   --color-sakuraPink: #d27e99;
   --color-waveRed: #e46876;
   --color-peachRed: #ff5d62;
   --color-surimiOrange: #ffa066;
   --color-katanaGray: #717c7c;
-
   --color-dragonBlack0: #0d0c0c;
   --color-dragonBlack1: #12120f;
   --color-dragonBlack2: #1d1c19;
@@ -73,7 +50,6 @@
   --color-dragonBlack4: #282727;
   --color-dragonBlack5: #393836;
   --color-dragonBlack6: #625e5a;
-
   --color-dragonWhite: #c5c9c5;
   --color-dragonGreen: #87a987;
   --color-dragonGreen2: #8a9a7b;
@@ -89,8 +65,7 @@
   --color-dragonAqua: #8ea4a2;
   --color-dragonAsh: #737c73;
   --color-dragonTeal: #949fb5;
-  --color-dragonYellow: #c4b28a; /*#a99c8b, #8a9aa3, */
-
+  --color-dragonYellow: #c4b28a;
   --color-lotusInk1: #545464;
   --color-lotusInk2: #43436c;
   --color-lotusGray: #dcd7ba;
@@ -131,4 +106,241 @@
   --color-lotusTeal2: #6693bf;
   --color-lotusTeal3: #5a7785;
   --color-lotusCyan: #d7e3d8;
+  --color-ui-fg: var(--color-fujiWhite);
+  --color-ui-fg-dim: var(--color-oldWhite);
+  --color-ui-fg-reverse: var(--color-waveBlue1);
+  --color-ui-bg-dim: var(--color-sumiInk1);
+  --color-ui-bg-gutter: var(--color-sumiInk4);
+  --color-ui-bg-m3: var(--color-sumiInk0);
+  --color-ui-bg-m2: var(--color-sumiInk1);
+  --color-ui-bg-m1: var(--color-sumiInk2);
+  --color-ui-bg: var(--color-sumiInk3);
+  --color-ui-bg-p1: var(--color-sumiInk4);
+  --color-ui-bg-p2: var(--color-sumiInk5);
+  --color-ui-special: var(--color-springViolet1);
+  --color-ui-nontext: var(--color-sumiInk6);
+  --color-ui-whitespace: var(--color-sumiInk6);
+  --color-ui-bg-search: var(--color-waveBlue2);
+  --color-ui-bg-visual: var(--color-waveBlue1);
+  --color-ui-pmenu-fg: var(--color-fujiWhite);
+  --color-ui-pmenu-fg-sel: var(--color-ui-fg);
+  --color-ui-pmenu-bg: var(--color-waveBlue1);
+  --color-ui-pmenu-bg-sel: var(--color-waveBlue2);
+  --color-ui-pmenu-bg-sbar: var(--color-waveBlue1);
+  --color-ui-pmenu-bg-thumb: var(--color-waveBlue2);
+  --color-ui-float-fg: var(--color-oldWhite);
+  --color-ui-float-bg: var(--color-sumiInk0);
+  --color-ui-float-fg-border: var(--color-sumiInk6);
+  --color-ui-float-bg-border: var(--color-sumiInk0);
+  --color-syn-string: var(--color-springGreen);
+  --color-syn-variable: var(--color-ui-fg);
+  --color-syn-number: var(--color-sakuraPink);
+  --color-syn-constant: var(--color-surimiOrange);
+  --color-syn-identifier: var(--color-carpYellow);
+  --color-syn-parameter: var(--color-oniViolet2);
+  --color-syn-fun: var(--color-crystalBlue);
+  --color-syn-statement: var(--color-oniViolet);
+  --color-syn-keyword: var(--color-oniViolet);
+  --color-syn-operator: var(--color-boatYellow2);
+  --color-syn-preproc: var(--color-waveRed);
+  --color-syn-type: var(--color-waveAqua2);
+  --color-syn-regex: var(--color-boatYellow2);
+  --color-syn-deprecated: var(--color-katanaGray);
+  --color-syn-comment: var(--color-fujiGray);
+  --color-syn-punct: var(--color-springViolet2);
+  --color-syn-special1: var(--color-springBlue);
+  --color-syn-special2: var(--color-waveRed);
+  --color-syn-special3: var(--color-peachRed);
+  --color-vcs-added: var(--color-autumnGreen);
+  --color-vcs-removed: var(--color-autumnRed);
+  --color-vcs-changed: var(--color-autumnYellow);
+  --color-diff-add: var(--color-winterGreen);
+  --color-diff-delete: var(--color-winterRed);
+  --color-diff-change: var(--color-winterBlue);
+  --color-diff-text: var(--color-winterYellow);
+  --color-diag-ok: var(--color-springGreen);
+  --color-diag-error: var(--color-samuraiRed);
+  --color-diag-warning: var(--color-roninYellow);
+  --color-diag-info: var(--color-dragonBlue);
+  --color-diag-hint: var(--color-waveAqua1);
+  --color-term-1: var(--color-sumiInk0);
+  --color-term-2: var(--color-autumnRed);
+  --color-term-3: var(--color-autumnGreen);
+  --color-term-4: var(--color-boatYellow2);
+  --color-term-5: var(--color-crystalBlue);
+  --color-term-6: var(--color-oniViolet);
+  --color-term-7: var(--color-waveAqua1);
+  --color-term-8: var(--color-oldWhite);
+  --color-term-9: var(--color-fujiGray);
+  --color-term-10: var(--color-samuraiRed);
+  --color-term-11: var(--color-springGreen);
+  --color-term-12: var(--color-carpYellow);
+  --color-term-13: var(--color-springBlue);
+  --color-term-14: var(--color-springViolet1);
+  --color-term-15: var(--color-waveAqua2);
+  --color-term-16: var(--color-fujiWhite);
+  --color-term-17: var(--color-surimiOrange);
+  --color-term-18: var(--color-peachRed);
+}
+
+[data-theme='wave'] {
+  color-scheme: dark;
+}
+
+[data-theme='dragon'] {
+  color-scheme: dark;
+  --color-ui-fg: var(--color-dragonWhite);
+  --color-ui-fg-dim: var(--color-oldWhite);
+  --color-ui-fg-reverse: var(--color-waveBlue1);
+  --color-ui-bg-dim: var(--color-dragonBlack1);
+  --color-ui-bg-gutter: var(--color-dragonBlack4);
+  --color-ui-bg-m3: var(--color-dragonBlack0);
+  --color-ui-bg-m2: var(--color-dragonBlack1);
+  --color-ui-bg-m1: var(--color-dragonBlack2);
+  --color-ui-bg: var(--color-dragonBlack3);
+  --color-ui-bg-p1: var(--color-dragonBlack4);
+  --color-ui-bg-p2: var(--color-dragonBlack5);
+  --color-ui-special: var(--color-dragonGray3);
+  --color-ui-whitespace: var(--color-dragonBlack6);
+  --color-ui-nontext: var(--color-dragonBlack6);
+  --color-ui-bg-visual: var(--color-waveBlue1);
+  --color-ui-bg-search: var(--color-waveBlue2);
+  --color-ui-pmenu-fg: var(--color-fujiWhite);
+  --color-ui-pmenu-fg-sel: var(--color-ui-fg);
+  --color-ui-pmenu-bg: var(--color-waveBlue1);
+  --color-ui-pmenu-bg-sel: var(--color-waveBlue2);
+  --color-ui-pmenu-bg-thumb: var(--color-waveBlue2);
+  --color-ui-pmenu-bg-sbar: var(--color-waveBlue1);
+  --color-ui-float-fg: var(--color-oldWhite);
+  --color-ui-float-bg: var(--color-dragonBlack0);
+  --color-ui-float-fg-border: var(--color-sumiInk6);
+  --color-ui-float-bg-border: var(--color-dragonBlack0);
+  --color-syn-string: var(--color-dragonGreen2);
+  --color-syn-variable: var(--color-ui-fg);
+  --color-syn-number: var(--color-dragonPink);
+  --color-syn-constant: var(--color-dragonOrange);
+  --color-syn-identifier: var(--color-dragonYellow);
+  --color-syn-parameter: var(--color-dragonGray);
+  --color-syn-fun: var(--color-dragonBlue2);
+  --color-syn-statement: var(--color-dragonViolet);
+  --color-syn-keyword: var(--color-dragonViolet);
+  --color-syn-operator: var(--color-dragonRed);
+  --color-syn-preproc: var(--color-dragonRed);
+  --color-syn-type: var(--color-dragonAqua);
+  --color-syn-regex: var(--color-dragonRed);
+  --color-syn-deprecated: var(--color-katanaGray);
+  --color-syn-punct: var(--color-dragonGray2);
+  --color-syn-comment: var(--color-dragonAsh);
+  --color-syn-special1: var(--color-dragonTeal);
+  --color-syn-special2: var(--color-dragonRed);
+  --color-syn-special3: var(--color-dragonRed);
+  --color-diag-error: var(--color-samuraiRed);
+  --color-diag-ok: var(--color-springGreen);
+  --color-diag-warning: var(--color-roninYellow);
+  --color-diag-info: var(--color-dragonBlue);
+  --color-diag-hint: var(--color-waveAqua1);
+  --color-diff-add: var(--color-winterGreen);
+  --color-diff-delete: var(--color-winterRed);
+  --color-diff-change: var(--color-winterBlue);
+  --color-diff-text: var(--color-winterYellow);
+  --color-vcs-added: var(--color-autumnGreen);
+  --color-vcs-removed: var(--color-autumnRed);
+  --color-vcs-changed: var(--color-autumnYellow);
+  --color-term-1: var(--color-dragonBlack0);
+  --color-term-2: var(--color-dragonRed);
+  --color-term-3: var(--color-dragonGreen2);
+  --color-term-4: var(--color-dragonYellow);
+  --color-term-5: var(--color-dragonBlue2);
+  --color-term-6: var(--color-dragonPink);
+  --color-term-7: var(--color-dragonAqua);
+  --color-term-8: var(--color-oldWhite);
+  --color-term-9: var(--color-dragonGray);
+  --color-term-10: var(--color-waveRed);
+  --color-term-11: var(--color-dragonGreen);
+  --color-term-12: var(--color-carpYellow);
+  --color-term-13: var(--color-springBlue);
+  --color-term-14: var(--color-springViolet1);
+  --color-term-15: var(--color-waveAqua2);
+  --color-term-16: var(--color-dragonWhite);
+  --color-term-17: var(--color-dragonOrange);
+  --color-term-18: var(--color-dragonOrange2);
+}
+
+[data-theme='lotus'] {
+  color-scheme: light;
+  --color-ui-fg: var(--color-lotusInk1);
+  --color-ui-fg-dim: var(--color-lotusInk2);
+  --color-ui-fg-reverse: var(--color-lotusGray);
+  --color-ui-bg-dim: var(--color-lotusWhite1);
+  --color-ui-bg-gutter: var(--color-lotusWhite4);
+  --color-ui-bg-m3: var(--color-lotusWhite0);
+  --color-ui-bg-m2: var(--color-lotusWhite1);
+  --color-ui-bg-m1: var(--color-lotusWhite2);
+  --color-ui-bg: var(--color-lotusWhite3);
+  --color-ui-bg-p1: var(--color-lotusWhite4);
+  --color-ui-bg-p2: var(--color-lotusWhite5);
+  --color-ui-nontext: var(--color-lotusViolet1);
+  --color-ui-whitespace: var(--color-lotusViolet1);
+  --color-ui-special: var(--color-lotusViolet2);
+  --color-ui-bg-visual: var(--color-lotusViolet3);
+  --color-ui-bg-search: var(--color-lotusBlue2);
+  --color-ui-pmenu-fg: var(--color-lotusInk2);
+  --color-ui-pmenu-fg-sel: var(--color-ui-fg);
+  --color-ui-pmenu-bg: var(--color-lotusBlue1);
+  --color-ui-pmenu-bg-sel: var(--color-lotusBlue3);
+  --color-ui-pmenu-bg-sbar: var(--color-lotusBlue1);
+  --color-ui-pmenu-bg-thumb: var(--color-lotusBlue2);
+  --color-ui-float-fg: var(--color-lotusInk2);
+  --color-ui-float-bg: var(--color-lotusWhite0);
+  --color-ui-float-fg-border: var(--color-lotusGray2);
+  --color-ui-float-bg-border: var(--color-lotusWhite0);
+  --color-syn-string: var(--color-lotusGreen);
+  --color-syn-variable: var(--color-ui-fg);
+  --color-syn-number: var(--color-lotusPink);
+  --color-syn-constant: var(--color-lotusOrange);
+  --color-syn-identifier: var(--color-lotusYellow);
+  --color-syn-parameter: var(--color-lotusBlue5);
+  --color-syn-fun: var(--color-lotusBlue4);
+  --color-syn-statement: var(--color-lotusViolet4);
+  --color-syn-keyword: var(--color-lotusViolet4);
+  --color-syn-operator: var(--color-lotusYellow2);
+  --color-syn-preproc: var(--color-lotusRed);
+  --color-syn-type: var(--color-lotusAqua);
+  --color-syn-regex: var(--color-lotusYellow2);
+  --color-syn-deprecated: var(--color-lotusGray3);
+  --color-syn-comment: var(--color-lotusGray3);
+  --color-syn-punct: var(--color-lotusTeal1);
+  --color-syn-special1: var(--color-lotusTeal2);
+  --color-syn-special2: var(--color-lotusRed);
+  --color-syn-special3: var(--color-lotusRed);
+  --color-vcs-added: var(--color-lotusGreen2);
+  --color-vcs-removed: var(--color-lotusRed2);
+  --color-vcs-changed: var(--color-lotusYellow3);
+  --color-diff-add: var(--color-lotusGreen3);
+  --color-diff-delete: var(--color-lotusRed4);
+  --color-diff-change: var(--color-lotusCyan);
+  --color-diff-text: var(--color-lotusYellow4);
+  --color-diag-error: var(--color-lotusRed3);
+  --color-diag-ok: var(--color-lotusGreen);
+  --color-diag-warning: var(--color-lotusOrange2);
+  --color-diag-info: var(--color-lotusTeal3);
+  --color-diag-hint: var(--color-lotusAqua2);
+  --color-term-1: var(--color-sumiInk3);
+  --color-term-2: var(--color-lotusRed);
+  --color-term-3: var(--color-lotusGreen);
+  --color-term-4: var(--color-lotusYellow);
+  --color-term-5: var(--color-lotusBlue4);
+  --color-term-6: var(--color-lotusPink);
+  --color-term-7: var(--color-lotusAqua);
+  --color-term-8: var(--color-lotusInk1);
+  --color-term-9: var(--color-lotusGray3);
+  --color-term-10: var(--color-lotusRed2);
+  --color-term-11: var(--color-lotusGreen2);
+  --color-term-12: var(--color-lotusYellow2);
+  --color-term-13: var(--color-lotusTeal2);
+  --color-term-14: var(--color-lotusViolet4);
+  --color-term-15: var(--color-lotusAqua2);
+  --color-term-16: var(--color-lotusInk2);
+  --color-term-17: var(--color-lotusOrange2);
+  --color-term-18: var(--color-lotusRed3);
 }

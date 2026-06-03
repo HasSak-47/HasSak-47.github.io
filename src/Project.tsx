@@ -26,7 +26,7 @@ function generateUrl(page: string | null, text: string) {
         href={page}
         target='_blank'
         rel='noopener noreferrer'
-        className='text-lightBlue hover:text-springBlue inline-block w-full text-sm'
+        className='text-syn-type hover:text-springBlue inline-block w-full text-sm'
       >
         {text}
       </a>
@@ -110,22 +110,22 @@ export default function Project({
   return (
     <div
       ref={containerRef}
-      className='focus:border-crystalBlue w-full p-6 transition'
+      className='focus:border-ui-float-fg-border w-full p-6 transition'
       tabIndex={-1}
     >
       <div className='mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between'>
         <div>
           <div className='flex flex-wrap items-center gap-3'>
-            <div className='text-crystalBlue text-2xl font-semibold uppercase'>
+            <div className='text-syn-fun text-2xl font-semibold uppercase'>
               {name}
             </div>
             {typeof status === 'string' && (
-              <span className='border-waveBlue2 text-lightBlue border px-2 py-1 text-xs uppercase'>
+              <span className='border-ui-float-fg-border text-syn-type border px-2 py-1 text-xs uppercase'>
                 {status}
               </span>
             )}
           </div>
-          <div className='text-fujiGray mt-2 text-xs tracking-[0.24em] uppercase'>
+          <div className='text-syn-comment mt-2 text-xs tracking-[0.24em] uppercase'>
             {owner}/{project}
           </div>
           {opts.tools && opts.tools.length > 0 && (
@@ -133,7 +133,7 @@ export default function Project({
               {opts.tools.map((tool) => (
                 <span
                   key={tool}
-                  className='border-sumiInk4 text-dragonBlue2 border px-2 py-1 text-xs uppercase'
+                  className='border-ui-float-fg-border text-diag-info border px-2 py-1 text-xs uppercase'
                 >
                   {tool}
                 </span>
@@ -143,7 +143,7 @@ export default function Project({
         </div>
         {readme && (
           <button
-            className='text-springViolet1 hover:text-dragonBlue2 flex rounded-lg px-2 py-1 transition'
+            className='text-syn-punct hover:text-diag-info flex rounded-lg px-2 py-1 transition'
             onClick={() => setShowReadme(!showReadme)}
             title={
               showReadme ? 'Hide README' : 'Show README'
@@ -167,11 +167,11 @@ export default function Project({
           </button>
         )}
       </div>
-      <div className='text-lotusWhite3/90 text-justify leading-7'>
+      <div className='text-ui-fg text-justify leading-7'>
         {desc}
       </div>
       {showReadme && readme && (
-        <div className='markdown prose prose-invert border-dragonBlue2 mt-4 max-w-none rounded-lg border p-6'>
+        <div className='markdown prose prose-invert border-ui-float-fg-border mt-4 max-w-none rounded-lg border p-6'>
           <ReactMarkdown>{readme}</ReactMarkdown>
         </div>
       )}
