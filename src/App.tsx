@@ -113,6 +113,8 @@ export default function App() {
   >([]);
   const [route, setRoute] = useState('/');
   const [index, setIndex] = useState<number | null>(null);
+  const [projectGridColumns, setProjectGridColumns] =
+    useState(1);
   const [theme, setTheme] =
     useState<ThemeName>(getStoredTheme);
 
@@ -139,9 +141,28 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const syncGridColumns = () => {
+      if (window.matchMedia('(min-width: 80rem)').matches) {
+        setProjectGridColumns(3);
+      } else if (
+        window.matchMedia('(min-width: 48rem)').matches
+      ) {
+        setProjectGridColumns(2);
+      } else {
+        setProjectGridColumns(1);
+      }
+    };
+
+    syncGridColumns();
+    window.addEventListener('resize', syncGridColumns);
+    return () =>
+      window.removeEventListener('resize', syncGridColumns);
+  }, []);
+
+  useEffect(() => {
     if (route !== '/projects') return;
 
-    const handler = (delta: number) => {
+    const moveHorizontal = (delta: number) => {
       return (prev: number | null) => {
         if (prev === null) return 0;
         let next = prev + delta;
@@ -152,17 +173,43 @@ export default function App() {
       };
     };
 
+    const moveVertical = (delta: number) => {
+      return (prev: number | null) => {
+        if (prev === null) return 0;
+        const next = prev + delta * projectGridColumns;
+        if (next < 0 || next >= projectList.length) {
+          return prev;
+        }
+        return next;
+      };
+    };
+
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'j') {
-        setIndex(handler(1));
+      const target = e.target;
+      if (
+        target instanceof HTMLElement &&
+        target.closest(
+          'a, button, input, textarea, select, [contenteditable="true"]'
+        )
+      ) {
+        return;
+      }
+      if (e.key == 'Escape') {
+        setIndex(null);
+      } else if (e.key === 'j') {
+        setIndex(moveVertical(1));
       } else if (e.key === 'k') {
-        setIndex(handler(-1));
+        setIndex(moveVertical(-1));
+      } else if (e.key === 'h') {
+        setIndex(moveHorizontal(-1));
+      } else if (e.key === 'l') {
+        setIndex(moveHorizontal(1));
       }
     }
     window.addEventListener('keydown', handleKeyDown);
     return () =>
       window.removeEventListener('keydown', handleKeyDown);
-  }, [projectList.length, route]);
+  }, [projectGridColumns, projectList.length, route]);
 
   const runnableProjects = projectList.filter(
     (p) => p.status != 'wip'
@@ -192,16 +239,6 @@ export default function App() {
           >
             Open Projects
           </a>
-          {/*
-          <a
-            href='https://github.com/HasSak-47'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='border-ui-float-fg-border text-ui-fg hover:border-ui-float-fg-border hover:text-syn-type inline-flex border px-4 py-3 text-xs tracking-[0.24em] uppercase transition'
-          >
-            GitHub
-          </a>
-*/}
         </div>
       </section>
 
@@ -210,10 +247,10 @@ export default function App() {
           <p className='text-syn-comment mb-4 text-xs tracking-[0.3em] uppercase'>
             Selected Work
           </p>
-          <h2 className='text-ui-fg text-3xl leading-tight font-semibold uppercase'>
+          <h2 className='text-syn-parameter text-3xl leading-tight font-semibold uppercase'>
             {featuredProject?.name ?? 'Project Archive'}
           </h2>
-          <p className='text-syn-parameter mt-5 text-base leading-7'>
+          <p className='text-ui-fg mt-5 text-base leading-7'>
             {getProjectDescription(featuredProject)}
           </p>
           {(featuredProject?.tools?.length ?? 0) > 0 && (
@@ -255,7 +292,7 @@ export default function App() {
               <p className='text-syn-keyword text-ls tracking-[0.28em] uppercase'>
                 {`0${i + 1} / ${project.name}`}
               </p>
-              <p className='text-syn-parameter text-s mt-3 leading-8'>
+              <p className='text-ui-fg mt-3 text-sm leading-8'>
                 {getProjectDescription(project)}
               </p>
             </div>
@@ -271,15 +308,30 @@ export default function App() {
         <h1 className='text-ui-fg mt-4 text-4xl font-semibold tracking-[0.08em] uppercase sm:text-5xl'>
           Personal Projects
         </h1>
-        <p className='text-ui-fg mt-5 text-base leading-8'>
+        <p className='text-ui-fg mt-5 max-w-5xl text-base leading-8'>
           Some of the personal projects I have worked on,
           mostly *nix utilities, language tooling, and
-          interface experiments. Use `j` and `k` to move
-          focus across cards. Like in vim :)
+          interface experiments. Use{' '}
+          <div className='text-syn-constant inline font-mono'>
+            h
+          </div>
+          ,{' '}
+          <div className='text-syn-constant inline font-mono'>
+            j
+          </div>
+          ,{' '}
+          <div className='text-syn-constant inline font-mono'>
+            k
+          </div>
+          ,{' '}
+          <div className='text-syn-constant inline font-mono'>
+            l
+          </div>{' '}
+          to move focus across projects. Like in vim :)
         </p>
       </section>
 
-      <section className='mt-4 grid gap-4'>
+      <section className='mt-4 grid gap-px md:grid-cols-2 xl:grid-cols-3'>
         {projectList.map((props, i) => (
           <Project key={i} {...props} focus={i === index} />
         ))}
@@ -288,8 +340,8 @@ export default function App() {
   );
 
   return (
-    <div className='bg-ui-bg-dim text-ui-fg flex min-h-screen w-screen min-w-50 flex-col'>
-      <header className='bg-ui-bg border-ui-float-fg-border sticky top-0 z-20 border-b px-4 py-5 shadow-md backdrop-blur sm:px-6 lg:px-8'>
+    <div className='bg-ui-bg text-ui-fg flex min-h-screen w-screen min-w-50 flex-col'>
+      <header className='bg-ui-bg-gutter border-ui-float-fg-border sticky top-0 z-20 border-b px-4 py-5 shadow-md backdrop-blur sm:px-6 lg:px-8'>
         <div className='mx-auto flex max-w-6xl flex-col-reverse gap-4 sm:flex-row-reverse sm:items-center sm:justify-between'>
           <ThemeSwitcher
             theme={theme}
@@ -312,7 +364,7 @@ export default function App() {
 
       {route === '/projects' ? projects : home}
 
-      <footer className='bg-ui-float-bg-border text-ui-fg border-ui-bg-p1 border-t px-4 py-6'>
+      <footer className='bg-ui-bg-dim text-ui-fg border-ui-bg-p1 border-t px-4 py-6'>
         <div className='mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row'>
           <div className='text-syn-comment text-xs tracking-[0.24em] uppercase'></div>
           <div className='flex gap-4'>

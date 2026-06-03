@@ -26,7 +26,7 @@ function generateUrl(page: string | null, text: string) {
         href={page}
         target='_blank'
         rel='noopener noreferrer'
-        className='text-syn-type hover:text-springBlue inline-block w-full text-sm'
+        className='text-syn-type hover:text-syn-fun text-sm tracking-[0.2em] uppercase transition'
       >
         {text}
       </a>
@@ -61,7 +61,9 @@ export default function Project({
 }: ProjectProps) {
   const [readme, setReadme] = useState<string | null>(null);
   const [showReadme, setShowReadme] = useState(false);
+  const [leaving, setLeaving] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const leavingTimeoutRef = useRef<number | null>(null);
 
   // Fetch README on mount
   useEffect(() => {
@@ -95,8 +97,17 @@ export default function Project({
     }
   }, [focus]);
 
+  useEffect(() => {
+    return () => {
+      if (leavingTimeoutRef.current !== null) {
+        window.clearTimeout(leavingTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const githubUrl = getGithubRepoUrl(owner, project);
   const status = opts['status' as keyof typeof opts];
+  const canShowReadme = false;
 
   let desc =
     opts[mode] !== undefined
@@ -110,75 +121,84 @@ export default function Project({
   return (
     <div
       ref={containerRef}
-      className='focus:border-ui-float-fg-border w-full p-6 transition'
+      className={`focus:bg-ui-bg-visual relative z-0 flex min-h-80 w-full flex-col px-3 py-5 transition duration-500 backface-hidden focus:z-10 focus:scale-110 focus:outline-none sm:px-5 sm:py-6 ${leaving ? 'z-5' : ''
+        }`}
+      onFocus={() => {
+        setLeaving(false);
+        if (leavingTimeoutRef.current !== null) {
+          window.clearTimeout(leavingTimeoutRef.current);
+        }
+      }}
+      onBlur={() => {
+        setLeaving(true);
+        if (leavingTimeoutRef.current !== null) {
+          window.clearTimeout(leavingTimeoutRef.current);
+        }
+        leavingTimeoutRef.current = window.setTimeout(
+          () => {
+            setLeaving(false);
+          },
+          1000
+        );
+      }}
       tabIndex={-1}
     >
-      <div className='mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between'>
-        <div>
-          <div className='flex flex-wrap items-center gap-3'>
-            <div className='text-syn-fun text-2xl font-semibold uppercase'>
+      <div className='flex flex-1 flex-col gap-4'>
+        <div className='flex flex-1 flex-col gap-4'>
+          <div>
+            <h2 className='text-syn-fun text-2xl leading-tight font-semibold tracking-[0.04em] uppercase'>
               {name}
-            </div>
-            {typeof status === 'string' && (
-              <span className='border-ui-float-fg-border text-syn-type border px-2 py-1 text-xs uppercase'>
-                {status}
-              </span>
-            )}
+            </h2>
+            <p className='text-syn-comment mt-2 text-xs tracking-[0.24em] uppercase'>
+              {status}
+            </p>
           </div>
-          <div className='text-syn-comment mt-2 text-xs tracking-[0.24em] uppercase'>
-            {owner}/{project}
-          </div>
+          <p className='text-ui-fg max-h-42 overflow-hidden text-sm leading-7'>
+            {desc}
+          </p>
           {opts.tools && opts.tools.length > 0 && (
-            <div className='mt-4 flex flex-wrap gap-2'>
+            <div className='mt-auto flex flex-wrap gap-x-3 gap-y-2'>
               {opts.tools.map((tool) => (
                 <span
                   key={tool}
-                  className='border-ui-float-fg-border text-diag-info border px-2 py-1 text-xs uppercase'
+                  className='text-syn-parameter text-xs tracking-[0.18em] uppercase'
                 >
                   {tool}
                 </span>
               ))}
             </div>
           )}
-        </div>
-        {readme && (
-          <button
-            className='text-syn-punct hover:text-diag-info flex rounded-lg px-2 py-1 transition'
-            onClick={() => setShowReadme(!showReadme)}
-            title={
-              showReadme ? 'Hide README' : 'Show README'
-            }
-          >
-            {showReadme ? (
-              <>
-                <div>Hide readme.md</div>
-                <div className='mt-auto mb-auto'>
-                  <HiChevronUp />
-                </div>
-              </>
-            ) : (
-              <>
-                <div>Show readme.md</div>
-                <div className='mt-auto mb-auto'>
-                  <HiChevronDown />
-                </div>
-              </>
+          <div className='flex flex-wrap items-center gap-x-4 gap-y-2'>
+            {generateUrl(githubUrl, 'Repository')}
+            {generateUrl(page || null, 'Live Page')}
+            {canShowReadme && readme && (
+              <button
+                className='text-syn-type hover:text-syn-fun inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase transition'
+                onClick={() => setShowReadme(!showReadme)}
+                title={
+                  showReadme ? 'Hide README' : 'Show README'
+                }
+              >
+                {showReadme
+                  ? 'Hide readme.md'
+                  : 'Show readme.md'}
+                <span className='text-base'>
+                  {showReadme ? (
+                    <HiChevronUp />
+                  ) : (
+                    <HiChevronDown />
+                  )}
+                </span>
+              </button>
             )}
-          </button>
-        )}
+          </div>
+        </div>
       </div>
-      <div className='text-ui-fg text-justify leading-7'>
-        {desc}
-      </div>
-      {showReadme && readme && (
-        <div className='markdown prose prose-invert border-ui-float-fg-border mt-4 max-w-none rounded-lg border p-6'>
+      {canShowReadme && showReadme && readme && (
+        <div className='markdown prose prose-invert border-ui-float-fg-border mt-6 max-w-none border p-6'>
           <ReactMarkdown>{readme}</ReactMarkdown>
         </div>
       )}
-      <div className='mt-5 flex flex-col gap-1'>
-        {generateUrl(githubUrl, 'View on Github')}
-        {generateUrl(page || null, 'View Page')}
-      </div>
     </div>
   );
 }
