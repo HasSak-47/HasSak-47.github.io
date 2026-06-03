@@ -1,81 +1,58 @@
 {
-    "projects": [
-        {
-            "name": "Lyra Shell",
-            "status": "experimental",
-            "owner": "HasSak-47",
-            "project": "lyra",
-            "shotest_desc": "Hyper-customizable Shell",
-            "short_desc": "Lyra is a hyper-customizable plugin-driven linux shell, it's behavior is modular instead of hardcoded.",
-            "desc": "Minimalist interactive shell for Linux, written in C and Rust with embedded Lua scripting. Designed for runtime configurability, lyra enables users to redefine core shell behaviors, including prompts, parsing, and command execution, through Lua scripts.",
-            "tools": [
-                "rust",
-                "Make",
-                "C",
-                "Lua 5.4"
-            ],
-            "branch": "stable"
-        },
-        {
-            "name": "Niebo",
-            "status": "wip",
-            "owner": "HasSak-47",
-            "project": "niebo",
-            "shortest_desc": "c with modules and interfaces",
-            "tools": [
-                "rust",
-                "llvm"
-            ],
-            "branch": "stable"
-        },
-        {
-            "name": "LyTop",
-            "status": "experimental",
-            "owner": "HasSak-47",
-            "project": "monitor",
-            "short_desc": "Extensible system monitor built for Linux terminals. Designed for high customizability via Lua scripting, LyTop combines a C++ core with a fully scriptable Lua-based widget/UI system. ",
-            "tools": [
-                "Make",
-                "C++",
-                "Lua 5.4",
-                "lui"
-            ],
-            "branch": "stable"
-        },
-        {
-            "name": "Yet Another/Interface Design Language",
-            "status": "experimental",
-            "short_desc": "YAIDL compiles a compact HTTP DSL describing structs, unions, and endpoints into code",
-            "owner": "HasSak-47",
-            "project": "yaidl",
-            "tools": [
-                "Rust",
-                "Pest"
-            ]
-        },
-        {
-            "name": "LUI",
-            "status": "experimental",
-            "short_desc": "A Terminal UI Rendering System. the engine is implemented in C++ with Lua scripting support. It is centered around a Buffer and Widget abstraction for colored character grids, C++ and Lua-defined widgets.",
-            "owner": "HasSak-47",
-            "project": "yaidl",
-            "tools": [
-                "Make",
-                "C++",
-                "Lua 5.4"
-            ]
-        },
-        {
-            "name": "Home Page",
-            "status": "stable",
-            "owner": "HasSak-47",
-            "shortest_desc": "this page :)",
-            "project": "HasSak-47.github.io"
-        }
-    ],
-    "dotfiles": [
-        "LyVim"
-    ],
-    "blogs": [],
-    "wikis": []
+  "projects": [
+    {
+      "name": "Lyra Shell",
+      "status": "experimental",
+      "owner": "HasSak-47",
+      "project": "lyra",
+      "shotest_desc": "Hyper-customizable Shell",
+      "short_desc": "Lyra is a hyper-customizable plugin-driven linux shell, it's behavior is modular instead of hardcoded.",
+      "desc": "Interactive shell for Linux, written in C and Rust with embedded Lua scripting. Designed for runtime configurability, lyra enables users to redefine core shell behaviors, including prompts, parsing, and command execution, through Lua scripts.",
+      "tools": ["C", "rust", "Lua 5.4"]
+    },
+    {
+      "name": "Niebo",
+      "status": "wip",
+      "owner": "HasSak-47",
+      "project": "niebo",
+      "shortest_desc": "c with modules and interfaces",
+      "tools": ["rust", "llvm"]
+    },
+    {
+      "name": "LyTop",
+      "status": "experimental",
+      "owner": "HasSak-47",
+      "project": "monitor",
+      "short_desc": "Extensible system monitor built for Linux terminals. Designed for high customizability via Lua scripting, LyTop combines a C++ core with a fully scriptable Lua-based widget/UI system. ",
+      "tools": ["C++", "Lua 5.4", "lui"],
+      "branch": "stable"
+    },
+    {
+      "name": "Yet Another/Interface Design Language",
+      "status": "experimental",
+      "short_desc": "YAIDL compiles a compact HTTP DSL describing structs, unions, and endpoints into code",
+      "owner": "HasSak-47",
+      "project": "yaidl",
+      "tools": ["rust"]
+    },
+    {
+      "name": "LUI",
+      "status": "experimental",
+      "short_desc": "A Terminal UI Rendering System. the engine is implemented in C++ with Lua scripting support. It is centered around a Buffer and Widget abstraction for colored character grids, C++ and Lua-defined widgets.",
+      "owner": "HasSak-47",
+      "project": "yaidl",
+      "tools": ["C++", "Lua 5.4"]
+    },
+    {
+      "name": "Home Page",
+      "status": "stable",
+      "owner": "HasSak-47",
+      "shortest_desc": "this page :)",
+      "project": "HasSak-47.github.io",
+      "tools": ["Vite", "React", "Tailwind"]
+    }
+  ],
+  "dotfiles": ["LyVim"],
+  "blogs": [],
+  "wikis": []
 }
