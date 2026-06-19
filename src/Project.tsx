@@ -49,7 +49,7 @@ export interface ProjectProps {
   mode: 'shortest_desc' | 'short_desc' | 'desc';
 }
 
-export default function Project({
+function Project({
   name,
   owner,
   project,
@@ -121,8 +121,9 @@ export default function Project({
   return (
     <div
       ref={containerRef}
-      className={`focus:bg-ui-bg-visual relative z-0 flex min-h-80 w-full flex-col px-3 py-5 transition duration-500 backface-hidden focus:z-10 focus:scale-110 focus:outline-none sm:px-5 sm:py-6 ${leaving ? 'z-5' : ''
-        }`}
+      className={`focus:bg-ui-bg-visual relative z-0 flex min-h-80 w-full flex-col px-3 py-5 transition duration-500 backface-hidden focus:z-10 focus:scale-110 focus:outline-none sm:px-5 sm:py-6 ${
+        leaving ? 'z-5' : ''
+      }`}
       onFocus={() => {
         setLeaving(false);
         if (leavingTimeoutRef.current !== null) {
@@ -200,5 +201,148 @@ export default function Project({
         </div>
       )}
     </div>
+  );
+}
+
+export default function Projects() {
+  const [projectList, setProjectList] = useState<
+    ProjectProps[]
+  >([]);
+
+  const [index, setIndex] = useState<number | null>(null);
+  const [projectGridColumns, setProjectGridColumns] =
+    useState(1);
+
+  useEffect(() => {
+    const syncGridColumns = () => {
+      if (window.matchMedia('(min-width: 80rem)').matches) {
+        setProjectGridColumns(3);
+      } else if (
+        window.matchMedia('(min-width: 48rem)').matches
+      ) {
+        setProjectGridColumns(2);
+      } else {
+        setProjectGridColumns(1);
+      }
+    };
+
+    syncGridColumns();
+    window.addEventListener('resize', syncGridColumns);
+    return () =>
+      window.removeEventListener('resize', syncGridColumns);
+  }, []);
+
+  useEffect(() => {
+    const syncGridColumns = () => {
+      if (window.matchMedia('(min-width: 80rem)').matches) {
+        setProjectGridColumns(3);
+      } else if (
+        window.matchMedia('(min-width: 48rem)').matches
+      ) {
+        setProjectGridColumns(2);
+      } else {
+        setProjectGridColumns(1);
+      }
+    };
+
+    syncGridColumns();
+    window.addEventListener('resize', syncGridColumns);
+    return () =>
+      window.removeEventListener('resize', syncGridColumns);
+  }, []);
+
+  useEffect(() => {
+    const moveHorizontal = (delta: number) => {
+      return (prev: number | null) => {
+        if (prev === null) return 0;
+        let next = prev + delta;
+        if (next < 0) next = 0;
+        if (next >= projectList.length)
+          next = projectList.length - 1;
+        return next;
+      };
+    };
+
+    const moveVertical = (delta: number) => {
+      return (prev: number | null) => {
+        if (prev === null) return 0;
+        const next = prev + delta * projectGridColumns;
+        if (next < 0 || next >= projectList.length) {
+          return prev;
+        }
+        return next;
+      };
+    };
+
+    function handleKeyDown(e: KeyboardEvent) {
+      const target = e.target;
+      if (
+        target instanceof HTMLElement &&
+        target.closest(
+          'a, button, input, textarea, select, [contenteditable="true"]'
+        )
+      ) {
+        return;
+      }
+      if (e.key == 'Escape') {
+        setIndex(null);
+      } else if (e.key === 'j') {
+        setIndex(moveVertical(1));
+      } else if (e.key === 'k') {
+        setIndex(moveVertical(-1));
+      } else if (e.key === 'h') {
+        setIndex(moveHorizontal(-1));
+      } else if (e.key === 'l') {
+        setIndex(moveHorizontal(1));
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown);
+    return () =>
+      window.removeEventListener('keydown', handleKeyDown);
+  }, [projectGridColumns, projectList.length]);
+
+  useEffect(() => {
+    async function fetchProjects() {
+      const res = await fetch('./data.json');
+      const data = await res.json();
+      setProjectList(data['projects']);
+    }
+    fetchProjects();
+  }, []);
+  return (
+    <main className='mx-auto flex w-full max-w-6xl flex-1 flex-col px-2 py-4 sm:px-3 lg:px-4'>
+      <section className='px-3 py-5 sm:px-5'>
+        <h1 className='text-ui-fg mt-4 text-4xl font-semibold tracking-[0.08em] uppercase sm:text-5xl'>
+          Personal Projects
+        </h1>
+        <p className='text-ui-fg mt-5 max-w-5xl text-base leading-8'>
+          Some of the personal projects I have worked on,
+          mostly *nix utilities, language tooling, and
+          interface experiments. Use{' '}
+          <div className='text-syn-constant inline font-mono'>
+            h
+          </div>
+          ,{' '}
+          <div className='text-syn-constant inline font-mono'>
+            j
+          </div>
+          ,{' '}
+          <div className='text-syn-constant inline font-mono'>
+            k
+          </div>
+          ,{' '}
+          <div className='text-syn-constant inline font-mono'>
+            l
+          </div>{' '}
+          to move focus across projects. Like in vim :)
+        </p>
+      </section>
+
+      <section className='mt-4 grid gap-px md:grid-cols-2 xl:grid-cols-3'>
+        {projectList.map((props, i) => (
+          <Project key={i} {...props} focus={i === index} />
+        ))}
+      </section>
+    </main>
   );
 }

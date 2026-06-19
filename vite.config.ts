@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import preact from '@preact/preset-vite';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [react(), tailwindcss()],
-	build: {
-		outDir: 'docs/',
-	},
-});
+  plugins: [preact(), tailwindcss()],
+  build: {
+    outDir: 'docs/',
+  }
+})
