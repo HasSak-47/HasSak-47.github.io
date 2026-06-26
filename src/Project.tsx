@@ -121,9 +121,8 @@ function Project({
   return (
     <div
       ref={containerRef}
-      className={`focus:bg-ui-bg-visual relative z-0 flex min-h-80 w-full flex-col px-3 py-5 transition duration-500 backface-hidden focus:z-10 focus:scale-110 focus:outline-none sm:px-5 sm:py-6 ${
-        leaving ? 'z-5' : ''
-      }`}
+      className={`focus:bg-ui-bg-visual relative z-0 flex min-h-80 w-full flex-col px-3 py-5 transition duration-500 backface-hidden focus:z-10 focus:scale-110 focus:outline-none sm:px-5 sm:py-6 ${leaving ? 'z-5' : ''
+        }`}
       onFocus={() => {
         setLeaving(false);
         if (leavingTimeoutRef.current !== null) {
@@ -276,6 +275,7 @@ export default function Projects() {
 
     function handleKeyDown(e: KeyboardEvent) {
       const target = e.target;
+      e.preventDefault();
       if (
         target instanceof HTMLElement &&
         target.closest(
@@ -286,13 +286,13 @@ export default function Projects() {
       }
       if (e.key == 'Escape') {
         setIndex(null);
-      } else if (e.key === 'j') {
+      } else if (e.key === 'j' || e.key == 'ArrowDown') {
         setIndex(moveVertical(1));
-      } else if (e.key === 'k') {
+      } else if (e.key === 'k' || e.key == 'ArrowUp') {
         setIndex(moveVertical(-1));
-      } else if (e.key === 'h') {
+      } else if (e.key === 'h' || e.key == 'ArrowLeft') {
         setIndex(moveHorizontal(-1));
-      } else if (e.key === 'l') {
+      } else if (e.key === 'l' || e.key == 'ArrowRight') {
         setIndex(moveHorizontal(1));
       }
     }
@@ -318,23 +318,30 @@ export default function Projects() {
         <p className='text-ui-fg mt-5 max-w-5xl text-base leading-8'>
           Some of the personal projects I have worked on,
           mostly *nix utilities, language tooling, and
-          interface experiments. Use{' '}
-          <div className='text-syn-constant inline font-mono'>
-            h
+          interface experiments.{' '}
+          <div className='hidden md:inline'>
+            {' '}
+            Use{' '}
+            <div className='text-syn-constant inline font-mono'>
+              h
+            </div>
+            ,{' '}
+            <div className='text-syn-constant inline font-mono'>
+              j
+            </div>
+            ,{' '}
+            <div className='text-syn-constant inline font-mono'>
+              k
+            </div>
+            ,{' '}
+            <div className='text-syn-constant inline font-mono'>
+              l
+            </div>{' '}
+            to move focus across projects. Like in vim :)
+            <div className='text-syn-comment text-xs'>
+              or just use the arrow keys...
+            </div>
           </div>
-          ,{' '}
-          <div className='text-syn-constant inline font-mono'>
-            j
-          </div>
-          ,{' '}
-          <div className='text-syn-constant inline font-mono'>
-            k
-          </div>
-          ,{' '}
-          <div className='text-syn-constant inline font-mono'>
-            l
-          </div>{' '}
-          to move focus across projects. Like in vim :)
         </p>
       </section>
 
