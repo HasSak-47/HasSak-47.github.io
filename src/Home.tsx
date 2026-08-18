@@ -64,9 +64,6 @@ export default function Home() {
 
       <section className='mt-4 grid lg:grid-cols-[0.9fr_1.1fr]'>
         <div className='p-3 sm:p-4'>
-          <p className='text-syn-comment mb-4 font-mono text-xs tracking-[0.3em] uppercase'>
-            Selected Work
-          </p>
           <h2 className='text-syn-parameter font-mono text-3xl leading-tight font-semibold uppercase'>
             {featuredProject?.name ?? 'Project Archive'}
           </h2>
@@ -75,9 +72,6 @@ export default function Home() {
           </p>
           {(featuredProject?.tools?.length ?? 0) > 0 && (
             <div className='border-ui-float-fg-border mt-6 border-t pt-4'>
-              <p className='text-syn-comment text-xs tracking-[0.24em] uppercase'>
-                Stack
-              </p>
               <p className='text-syn-parameter mt-2 text-sm leading-7 uppercase'>
                 {featuredProject?.tools?.join(' / ')}
               </p>
